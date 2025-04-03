@@ -51,13 +51,14 @@ app.get('/image/:folder/:filename', ImageAccess);
 app.get('/file/:folder/:filename', ImageAccess);
 
 // Deployment Configuration
-if (process.env.NODE_ENV === 'production') {  // ✅ Fixed typo
-    app.use(express.static(path.resolve(__dirname, "Client", "dist")));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "Client", "dist")));
 
-    app.get('*', (req, res) => {  // ✅ Fixed order (req, res)
-        res.sendFile(path.resolve(__dirname, "Client", "dist", "index.html"));
+    app.get('*', (req, res) => {  
+        res.sendFile(path.join(__dirname, "Client", "dist", "index.html"));
     });
 }
+
 
 // Start the server
 const server = app.listen(port, () => {
