@@ -28,10 +28,11 @@ mongoose.connect(databaseURL)
 
 // Configure CORS
 app.use(cors({
-    origin: [process.env.ORIGIN],
+    origin: "http://localhost:8784", // Set specific origin
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    credentials: true,
+    credentials: true,  // Allows cookies & authentication headers
 }));
+
 
 app.options('*', cors());
 
